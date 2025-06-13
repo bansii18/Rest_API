@@ -12,14 +12,17 @@ app.listen(port,()=>{
 
 let posts = [
     {
+        id : "1a",
         username : "apna college",
         content : "I love Coding",
     },
     {
+        id : "2b",
         username : "Vraj patel",
         content : "I love JS",
     },
     {
+        id : "3d",
         username : "Bansii patel",
         content : "I love C",
     },
@@ -37,4 +40,11 @@ app.post("/posts",(req,res)=>{
     posts.push({username,content});
     // res.send("post request is working well");
     res.redirect("/posts");
+});
+    app.get("/posts/:id",(req,res)=>{
+    let {id} = req.params;
+    // console.log(id);
+    const post = posts.find((p)=>id === p.id);
+    res.render("show.ejs",{post});
+    // res.send("id is working");
 });

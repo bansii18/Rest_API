@@ -12,8 +12,12 @@
         <div class="postp">
             <h3 class="postsu">@<%= post.username %></h3>
             <h4 class="postc"><%= post.content %></h3>
+            <br/>
+            <button> <a href="http://localhost:8080/posts/<%=post.id%>"> See Post in detail </a> </button>
         </div>
     <% } %>
+    <br/>
+
     <button> <a href="http://localhost:8080/posts/new"> Create NEW Post </a> </button>
 </body>
 </html>
