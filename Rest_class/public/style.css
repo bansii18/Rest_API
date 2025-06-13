@@ -10,3 +10,7 @@ h1{
 .postc{
     color: blueviolet;
 }
+    input, textarea, button {
+    padding: 10px;
+    width: 300px;
+}
