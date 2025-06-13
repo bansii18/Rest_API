@@ -9,20 +9,21 @@ const port = 8080;
 app.listen(port,()=>{
     console.log(`app is runningon port ${port}`);
 });
+const { v4: uuidv4 } = require('uuid');
 
 let posts = [
     {
-        id : "1a",
+        id : uuidv4(),
         username : "apna college",
         content : "I love Coding",
     },
     {
-        id : "2b",
+        id : uuidv4(),
         username : "Vraj patel",
         content : "I love JS",
     },
     {
-        id : "3d",
+        id : uuidv4(),
         username : "Bansii patel",
         content : "I love C",
     },
@@ -37,7 +38,8 @@ app.get("/posts/new",(req,res)=>{
 });
 app.post("/posts",(req,res)=>{
     let {username,content} = req.body;
-    posts.push({username,content});
+    let id = uuidv4();
+    posts.push({username,content,id});
     // res.send("post request is working well");
     res.redirect("/posts");
 });
