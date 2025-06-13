@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname ,"views" ) );
 app.use(express.static(path.join(__dirname,"public") ) ) ;
@@ -46,7 +47,22 @@ app.post("/posts",(req,res)=>{
     app.get("/posts/:id",(req,res)=>{
     let {id} = req.params;
     // console.log(id);
-    const post = posts.find((p)=>id === p.id);
+    // const post = posts.find((p)=>id === p.id); // wrong
+    const post = posts.find((p) => p.id === id); // rightrs
+
+
     res.render("show.ejs",{post});
     // res.send("id is working");
 });
+
+ app.patch("/posts/:id",(req,res)=>{
+    let { id } = req.params;
+    // let newContent = req.body.content;
+    // const post = posts.find((p) => p.id === id); 
+    // post.content = newContent;/////////// 3hr lagadya error solve ni thai have chhodu chhu aane
+    // console.log(newContent);
+    // console.log(post);
+    console.log(id);
+    console.log("patch request is working");
+}); 
+
