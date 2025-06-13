@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+</head>
+<body>
+    <h2>Edit Post</h2>
+    <form action="/posts/<%= post.id %>?_method=PATCH" method="POST">
+        <label>Username: @<%= post.username %></label>
+        <br><br>
+        <textarea name="content" rows="5" cols="30"><%= post.content %></textarea>
+        <br><br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

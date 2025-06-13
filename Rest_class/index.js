@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set("view engine","ejs");
@@ -55,14 +57,30 @@ app.post("/posts",(req,res)=>{
     // res.send("id is working");
 });
 
- app.patch("/posts/:id",(req,res)=>{
-    let { id } = req.params;
-    // let newContent = req.body.content;
-    // const post = posts.find((p) => p.id === id); 
-    // post.content = newContent;/////////// 3hr lagadya error solve ni thai have chhodu chhu aane
-    // console.log(newContent);
-    // console.log(post);
-    console.log(id);
-    console.log("patch request is working");
-}); 
+//  app.patch("/posts/:id",(req,res)=>{
+//     let { id } = req.params;
+//     // let newContent = req.body.content;
+//     // const post = posts.find((p) => p.id === id); 
+//     // post.content = newContent;/////////// 3hr lagadya error solve ni thai have chhodu chhu aane
+//     // console.log(newContent);
+//     // console.log(post);
+//     console.log(id);
+//     console.log("patch request is working");
+// }); 
 
+app.get("/posts/:id/edit", (req, res) => {
+    const { id } = req.params;
+    const post = posts.find(p => p.id === id);
+    res.render("edit.ejs", { post });
+});
+
+app.patch("/posts/:id", (req, res) => {
+    const { id } = req.params;
+    const { content } = req.body;
+
+    const post = posts.find(p => p.id === id);
+    if (post) {
+        post.content = content;
+    }
+    res.redirect("/posts");
+});
