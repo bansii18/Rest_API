@@ -84,3 +84,10 @@ app.patch("/posts/:id", (req, res) => {
     }
     res.redirect("/posts");
 });
+
+app.delete("/posts/:id", (req, res) => {
+    const { id } = req.params;
+    // const post = posts.find(p => p.id === id);
+    posts = posts.filter(p => p.id !== id);
+    res.redirect("/posts");
+});
